@@ -29,7 +29,7 @@ tmpPostgres = urlparse(os.getenv("DATABASE_URL"))
 SECRET_KEY = 'django-insecure-a)*p=(@(uubic7ts5l*hnv#@8!hq8@mh!o88z#!zi(z)96(mzm'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = false
 
 ALLOWED_HOSTS = ["*","studentlecnote.onrender.com"]
 
@@ -171,5 +171,6 @@ print("Cloudinary Check:")
 print("Cloud Name:", CLOUDINARY_STORAGE['CLOUD_NAME'])
 print("API Key:", CLOUDINARY_STORAGE['API_KEY'])
 print("API Secret:", CLOUDINARY_STORAGE['API_SECRET'])
+
 
 
