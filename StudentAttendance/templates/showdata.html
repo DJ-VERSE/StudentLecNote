@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Attendance Entry</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f6f8;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h2 {
+      text-align: center;
+      color: #004080;
+      margin-bottom: 20px;
+    }
+
+    form {
+      max-width: 800px;
+      margin: 0 auto;
+      background-color: #fff;
+      padding: 25px;
+      border-radius: 10px;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      font-weight: bold;
+      margin-bottom: 8px;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+
+    .file-upload {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .file-upload label {
+      display: inline-block;
+      background-color: #004080;
+      color: white;
+      padding: 10px 16px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .file-upload input[type="file"] {
+      display: none;
+    }
+
+    .submit-btn {
+      text-align: center;
+      margin-top: 25px;
+    }
+
+    .submit-btn button {
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    #sd{
+      padding: 12px 30px;
+      font-size: 18px;
+      background-color: #004080;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .submit-btn button:hover {
+      background-color: #0066cc;
+    }
+    #tab{
+        text-align: center;
+        overflow: scroll;
+    }
+    #td{
+      max-width: 200px;
+      word-wrap: break-word;
+    word-break: break-word;
+    white-space: normal;
+      overflow-y: scroll;
+    }
+
+    @media (max-width: 600px) {
+      .form-group {
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .form-group label {
+        width: 200px;
+        margin-bottom: 0;
+      }
+
+      .form-group input,
+      .form-group select,
+      .form-group textarea {
+        flex: 1;
+      }
+      #tab{
+        font-size: 10px;
+        text-align: center;
+        
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Attendance Data</h2>
+
+  <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="lecture">enrollment</label>
+      <input type="number" placeholder="" name="enrollment">
+    </div>
+    <center>
+    <div id="datatable">
+        <table id="tab" border="2" cellpadding="5px">
+            <tr>
+                <th width="10%">lecture</th>
+                <th>faculty</th>
+                <th>lecture_notes</th>
+                <th>File</th>
+                <th>Enrollment no</th>
+                <th>Time</th>
+            </tr>
+            {% for data in data %}
+            <tr>
+                <td width="10%">{{data.lecture}}</td>
+                <td>{{data.faculty}}</td>
+                <td id="td">{{data.lecture_notes}}</td>
+                <td><a href="{{data.file}}">view</a></td>
+                <td>{{data.enrollment}}</td>
+                <td>{{data.timestamp}}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    </center>
+
+    <div class="submit-btn">
+      <button type="submit">Search</button>
+    </div>
+  </form>
+
+</body>
+</html>
